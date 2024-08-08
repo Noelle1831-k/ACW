@@ -14,4 +14,4 @@ The implementation of ACW involves the following processes: scanning the AI-gene
 <img src='rules.png'/>
 </p>
 
-If you need the complete list of rules, please download it [here](http://immortal.multicomp.cs.cmu.edu/raw_datasets/CMU_MOSEI.zip)
+If you need the complete list of rules, please download it [here](https://github.com/Noelle1831-k/ACW/blob/main/Transformations.xlsx)
