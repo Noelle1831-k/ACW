@@ -2,6 +2,11 @@
 <p align="center">
 Efficient Watermarking for AI-Generated Codes
 </p>
+<div align="center">
+  
+  <a href="">![Static Badge](https://img.shields.io/badge/Python-3.12-blue)</a>
+
+</div>
 
 ## Overview
 <p align="center">
