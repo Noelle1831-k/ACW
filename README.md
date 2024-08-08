@@ -1,7 +1,17 @@
-# ACW
+<h1 align="center">ACW</h1>
+<p align="center">
+Efficient Watermarking for AI-Generated Codes
+</p>
 
-Resilient Watermarking for LLM-Generated Codes
+## Overview
+<p align="center">
+<img src='architecture.png'/>
+</p>
+The implementation of ACW involves the following processes: scanning the AI-generated code to identify code transformations applicable to code segments based on a set of rules. According to the corresponding bits for the model, appropriate rules from the available set are selected and applied to embed the watermark into the code.
 
-**Appendix: Transformation Rules**
+## Appendix
+<p align="center">
+<img src='rules.png'/>
+</p>
 
-![Alt Text](https://github.com/Noelle1831-k/ACW/blob/main/Rules.png)
+If you need the complete list of rules, please download it [here](http://immortal.multicomp.cs.cmu.edu/raw_datasets/CMU_MOSEI.zip)
