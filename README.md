@@ -8,12 +8,12 @@
 ## Efficient Watermarking for AI-Generated Codes
 
 <p align="center">
-<img src='source/architecture.png'/>
+<img src='resource/architecture.png'/>
 </p>
 
 ## Appendix:Transformation Rules
 
 <p align="center">
-<img src='source/rules.png'/>
+<img src='resource/rules.png'/>
 </p>
 
