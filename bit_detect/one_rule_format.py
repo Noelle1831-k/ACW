@@ -6,7 +6,7 @@ import astor
 
 from base import refact_list
 from base.formatting import read_file_with_auto_encoding
-from bit_detect.run_test_1 import (transform_operations_add, transform_operations_mult,transform_comparison_LG
+from bit_detect.rule_base import (transform_operations_add, transform_operations_mult,transform_comparison_LG
 	,transform_comparison_LGE)
 
 
