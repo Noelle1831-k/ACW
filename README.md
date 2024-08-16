@@ -5,7 +5,7 @@
 
 </div>
 
-## Efficient Watermarking for AI-Generated Codes
+## Enhancing Traceability of AI-Generated Codes Based on Watermarking
 
 <p align="center">
 <img src='resource/architecture.png'/>
