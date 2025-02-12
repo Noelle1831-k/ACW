@@ -5,11 +5,7 @@
 
 </div>
 
-## Enhancing Traceability of AI-Generated Codes Based on Watermarking
-
-<p align="center">
-<img src='resource/architecture.png'/>
-</p>
+## LLM Regulator: Detecting AI-Generated Code Based on Watermarking
 
 ## Appendix:Transformation Rules
 
