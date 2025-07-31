@@ -43,7 +43,6 @@ If you discover any defect or have any suggestions for this work, please feel fr
 - [Appendix](#appendix)
     - [Transformation Rules](#transformation-rules-of-acw)
     - [Evaluation of Multi-bit Watermarking](#evaluation-results-of-multi-bit-watermarking)
-    - [Watermarked Code Examples](#comparison-of-intact-and-corrupted-watermarked-code)
 - [Quick Start](#quick-start)
 - [Contact](#contact)
 
@@ -76,61 +75,6 @@ the results are significantly increased based on error correction. For example, 
 uncorrected BitACC is 81.92% while it increases to 100% based on our error-correction strategy. Especially, as the bold
 values in the table, all the BitACC results are over 98% after correction, indicating the outstanding ability of ACW in
 extracting the embedded watermarks.
-
-### Watermarked Code Examples
-
-```python
-# Unwatermarked Code
-def remove_Occc(s,ch):
-  first_occ = s.find(ch)
-  last_occ = s.rfind(ch)
-  if first_occ != -1 and last_occ != - 1:
-    s = s[:first_occ] + s[first_occ+1:last_occ] +s[last_occ+1:]
-  return s
-
-# Watermarked Code by ACW
-def remove_Occ(s, ch):
-	first_occ = s.find(ch)
-	if first_occ == -1:
-		return s
-	last_occ = s.rfind(ch)
-	if last_occ == -1:
-		return s
-	s = s[:first_occ] + s[first_occ + 1:]
-	if last_occ < len(s):
-		s = s[:last_occ] + s[last_occ + 1:]
-	return s
-
-# Watermarked Code by STONE
-def remove_Occ/s, ch):
-    first = s.find(ch)
-    last = s.rfind(ch)
-    if first != -1 and first != last:
-        return s[:first] + s[first+1:last] + s[last+1:]
-    elif first != - 1:
-        return 5[:first] + 5[first + 1:]
-   else:
-       return 5
-
-# Watermarked Code by SWEET
-def remove_Occ=s,ch):
-    first_occ = s.find(ch)
-    if first_occ != -1:
-        s = s[:first_occ] + s[first_occ+1:]
-    last_occ = s.rfind(ch)
-    if last_occ > first_occ:
-        s=s[:last_occ-1]+s[last_occ:]
-    return s
-
-# Watermarked Code by WLLM
-def remove_O cc(s, ch):   
-    s = s.replace(ch, '', 1)    
-    s = ''.join([s[i:i + 1] if s[i:i +1] !=ch else ''  if s[i-1:i-1 + 1]==ch else s[i:i +
-    1]
-    if s[i + 1:i + 2]==ch else '' if s[i:]==ch else  s[i:i  + 1]
-   if s[i:-1]==ch  else s[i:]])
-    return s
-```
 
 
 ## Quick Start
