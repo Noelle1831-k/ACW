@@ -28,8 +28,8 @@
 - [Abstract](#abstract)
 - [Quick Start](#quick-start)
 - [Appendix](#appendix)
-    - [A.Transformation Rules](#a-transformation-rules)
-    - [B.Multi-bit Watermarking](#b-multi-bit-watermarking)
+    - [A.Transformation Rules](#atransformation-rules)
+    - [B.Multi-bit Watermarking](#bmulti-bit-watermarking)
 - [Contact](#contact)
 
 ## Abstract
