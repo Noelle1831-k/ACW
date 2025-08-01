@@ -80,7 +80,7 @@ If additional data is necessary, please add the dataset path to the **folder_lis
 folder_paths = ["G/Data"]
 ```
 
-### Step 3: Testing the Results
+### Step 3: Test the Results
 
 #### **Evaluation on Discriminability**
 
