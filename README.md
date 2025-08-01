@@ -27,55 +27,20 @@
 
 # ACW : AI-Generated Code Watermarking  <a id="acw"></a>
 
-We propose a plug-and-play watermarking approach for AI-generated code detection, named ACW (AI Code Watermarking). 
-ACW effectively detects AI-generated code, preserves code utility, and is resilient against common code optimizations. 
-Especially, ACW is efficient and is universal across different LLMs, addressing the limitations of existing approaches.
 
-If you discover any defect or have any suggestions for this work, please feel free to submit a [pull request](https://github.com/flyingby/Awesome-Deepfake-Generation-and-Detection/issues) or [contact us](#contact).
-
+Large language models (LLMs) have significantly enhanced the usability of AI-generated code, providing effective assistance to programmers. 
+This advancement also raises ethical and legal concerns, such as academic dishonesty or the generation of malicious code.
+For accountability, it is imperative to detect whether a piece of code is AI-generated.
+Watermarking is broadly considered a promising solution and has been successfully applied to identify LLM-generated text. 
+However, existing efforts on code are far from ideal, suffering from limited universality and excessive time and memory consumption.
+In this work, we propose a plug-and-play watermarking approach for AI-generated code detection, named **ACW** (**A**I **C**ode **W**atermarking).
+**ACW** is training-free and works by selectively applying a set of carefully-designed, semantic-preserving and idempotent code transformations to LLM code outputs.
+The presence or absence of the transformations serves as implicit watermarks, enabling the detection of AI-generated code.
+Our experimental results show that ACW effectively detects AI-generated code, preserves code utility, and is resilient against code optimizations.
+Especially, **ACW** is efficient and is universal across different LLMs, addressing the limitations of existing approaches.
 <img src="assets/Overview.png">
 
 </p>
-
-
-## Overview of this repository
-
-- [Appendix](#appendix)
-    - [Transformation Rules](#transformation-rules-of-acw)
-    - [Evaluation of Multi-bit Watermarking](#evaluation-results-of-multi-bit-watermarking)
-- [Quick Start](#quick-start)
-- [Contact](#contact)
-
-## Appendix
-
-### Transformation Rules
-
-The table below shows the complete set of transformation rules for ACW, 
-and provides the detailed rule desription, an applicable code snippet, 
-and the transformed code snippet for each rule.
-<img src="assets/rules.png">
-
-### Evaluation of Multi-bit Watermarking
-
-<div align="center">
-    <figure>
-        <img src="assets/result.png" alt="Evaluation Results of Multi-bit Watermarking">
-        <figcaption>Table 1. Evaluation Results of Multi-bit Watermark Extraction</figcaption>
-    </figure>
-</div>>
-
-Table 1 presents our evaluation results. In this experiment,
-we collect the watermarked code with four applicable transformations, i.e., each code snippet is embedded with 4-bit
-watermarks, where the first two bits are original watermarks and the next two bits are generated based on BCH. We
-present the BitACC results before and after error corrections, where the former uncorrected ones are intermediate
-results for comparisons.
-
-As shown by the result in Table 1, ACW achieves promising performance on watermark extraction, and furthermore,
-the results are significantly increased based on error correction. For example, on the APPS-GPT-4 dataset, the
-uncorrected BitACC is 81.92% while it increases to 100% based on our error-correction strategy. Especially, as the bold
-values in the table, all the BitACC results are over 98% after correction, indicating the outstanding ability of ACW in
-extracting the embedded watermarks.
-
 
 ## Quick Start
 
@@ -87,62 +52,34 @@ Install the required Python libraries by running:
 pip install -r requirements.txt
 ```
 
-### Step 2: Prepare the Sourcery API
-
-Login Sourcery API by running:
+Login Sourcery API by running (please apply for a token on the [official Sourcery website](https://docs.sourcery.ai/Coding-Assistant/Guides/Getting-Started/CI/) if necessary):
 
 ```bash
 sourcery login --token $SOURCERY_TOKEN
 ```
 
-Please apply for a token on the [official Sourcery website](https://docs.sourcery.ai/Coding-Assistant/Guides/Getting-Started/CI/).
+### Step 2: Prepare the Dataset
 
-### Step 3: Prepare the Dataset
-
-We have provided the complete datasets for generated and human-written code.
-If you need to use other datasets for experiments, add the relative path of the dataset to the _folder_list.py_ file, like this:
+We have provided our complete experimental data containing AI-generated and human-written code.
+If additional data is necessary, please add its relative path of the dataset to the  **folder_list.py** file, like this:
 
 ```python
 folder_paths = ["G/Data"]
 ```
 
-### Step 4: Get the Results
+### Step 3: Get the Results
 
 #### Evaluation results on discriminability
-
-Run the following command to get the complete results for the main RQ1 experiment.
 
 ```bash
 python RQ1-get-results.py
 ```
 
-The results will be saved as _output.json_, containing the number of positive and negative examples in each dataset for computation.
-
-##### Ablation experiment
-First, combine the generated code (or human-written code) from all datasets into a single folder.
-To avoid the impact of non-executable fragments such as comments and blank lines, preprocess all the code to remove non-executable content first.
-
-Run the following command:
-
-```bash
-python clean.py <directory_path>
-```
-
-Run the following command to classify the code by the number of lines:
-
-```bash
-python move_by_line_count.py <directory_path>
-```
-
-Run the following command to get the experimental results:
-
-```bash
-python one-click-get-results_length.py
-```
+The results will be saved as _output.json_, containing the number of positive and negative examples for computation.
 
 #### Evaluation results on utility
 
-##### Pass Rate test on the APPS dataset
+##### Pass Rate on APPS
 
 After setting up and downloading the APPS dataset as instructed on the [APPS project page](https://github.com/hendrycks/apps), 
 use the following command to perform a pass rate test on the APPS code data:
@@ -151,16 +88,16 @@ use the following command to perform a pass rate test on the APPS code data:
 python test_one_solution.py -r <code_dir> -t <test_dir> --save /path/to/save_dir --print_results
 ```
 
-##### Pass Rate test for MBPP and HumanEval:
+##### Pass Rate based on MBPP and HumanEval:
 
-First, you need to consolidate the code data into a JSONL file:
+First, please consolidate the code data into a JSONL file:
 
 ```bash
 python folder_to_jsonl.py convert_py_folder_to_jsonl --input_folder=<code_dir>
 ```
 
 After setting up as instructed on the [mxeval project page](https://github.com/amazon-science/mxeval), 
-use the following commands to perform the pass rate test on MBPP and HumanEval code data:
+testing the pass rate using the command::
 
 ```bash
 evaluate_functional_correctness <mbpp_data>.jsonl --problem_file data/mbxp/mbpp_release_v1.jsonl
@@ -168,12 +105,43 @@ evaluate_functional_correctness <humaneval_data>.jsonl --problem_file data/multi
 ```
 
 #### Evaluation results on resilience
-Run the following Python program, where strength 1 and 2 correspond to the Basic and Extreme settings, to get the experimental results:
 
+Running the following command for testing:
 ```bash
 python one-click-get-results_ruff_attack.py folder_process --strength= <1 or 2>
 ```
+Strength 1 and 2 correspond to the Default-level and Maximum-level modifications.
+
+## Overview of this repository
+
+- [Quick Start](#quick-start)
+- [Appendix](#appendix)
+    - [Transformation Rules](#transformation-rules-of-acw)
+    - [Evaluation of Multi-bit Watermarking](#evaluation-results-of-multi-bit-watermarking)
+- [Contact](#contact)
+
+## Appendix
+
+### Transformation Rules
+
+Transformation Rules.
+<img src="assets/rules.png">
+
+### Evaluation of Multi-bit Watermarking
+
+| Dataset | BitACC (%)-0000 |                | BitACC (%)-0101 |                | BitACC (%)-1010 |                | BitACC (%)-1111 |                |
+|---------|-----------------|----------------|-----------------|----------------|-----------------|----------------|-----------------|----------------|
+|         | Uncorrected     | Corrected      | Uncorrected     | Corrected      | Uncorrected     | Corrected      | Uncorrected     | Corrected      |
+| MBPP-GPT-4 | 78.14          | **100**        | 92.69           | **99.48**      | 86.89           | **100**        | 98.91           | **98.91**      |
+| APPS-GPT-4 | 85.98          | **99.63**      | 93.03           | **99.35**      | 81.92           | **99.63**      | 100             | **100**        |
+
+
+
+The above table presents our results.
+Following our error-correction strategies, in this experiment, we collect the watermarked codes with four applicable transformations in MBPP-GPT-4 and APPS-GPT-4 datasets, i.e., each code snippet is embedded with 4-bit watermarks, where the first two bits are original watermarks and the next two bits are generated based on BCH.
+We present the BitACC results before and after error corrections, where the former uncorrected ones are intermediate results for comparisons.
+As shown by the result, **ACW** achieves promising performance on watermark extraction, and the results are significantly increased based on error correction.
+Especially, as the bold values in the table, all the BitACC results are over 98\% after correction, indicating that **ACW** has the ability to embed and extract multi-bit watermarks, and has the potential to be applied to more tasks beyond AI-generated code detection. 
 
 ## Contact
-If you have any questions, or would like to get in touch, please feel free to reach out to us via email at
-```noelle@hrbeu.edu.cn```
+We are looking forward to any valuable questions or suggestions, please feel free to contact us at ```noelle@hrbeu.edu.cn```
