@@ -1,0 +1,10 @@
+[lint]
+select = [
+    "PL",
+    "UP",
+    "B",
+    "SIM",
+    "I",
+    "F",
+    "FURB"
+]
