@@ -28,8 +28,8 @@
 - [Abstract](#abstract)
 - [Quick Start](#quick-start)
 - [Appendix](#appendix)
-    - [Transformation Rules](#transformation-rules)
-    - [Multi-bit Watermarking](#multi-bit-watermarking)
+    - [A.Transformation Rules](#a.transformation-rules)
+    - [B.Multi-bit Watermarking](#b.multi-bit-watermarking)
 - [Contact](#contact)
 
 ## Abstract
@@ -129,11 +129,11 @@ Strength 1 and 2 correspond to the Default-level and Maximum-level modifications
 
 ## Appendix
 
-### Transformation Rules
+### A.Transformation Rules
 
 <img src="assets/rules.png">
 
-### Multi-bit Watermarking
+### B.Multi-bit Watermarking
 
 We explore the transferability of **ACW** applied for tracing LLMs, beyond our main task of AI-generated code detection.
 By assigning multi-bit watermarks to encode different LLMs (e.g., ChatGPT-4 may be assigned with encoding $1011$), the authorship of a given code can be traced by identifying the extracted bit sequences.
