@@ -127,6 +127,30 @@ python RQ4-get-results.py folder_process --strength= <1 or 2>
 
 Strength 1 and 2 correspond to the Default-level and Maximum-level modifications.
 
+#### **Evaluation on transformation idempotence**
+
+Running the following command for testing:
+
+```bash
+python refactor.py idempotence --type scan --output results_idempotence_scan.json
+```
+
+#### **Evaluation on transformation order**
+
+Running the following command for testing:
+
+```bash
+python refactor.py idempotence --type random --seed 42 --output results_order_random.json
+```
+
+#### **Evaluation on watermark overlapping**
+
+Running the following command for testing:
+
+```bash
+python refactor.py chain --length 3 --seed 42 --output results_overlap.json
+```
+
 ## Appendix
 
 ### A.Transformation Rules
