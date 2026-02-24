@@ -143,7 +143,7 @@ Running the following command for testing:
 python refactor.py idempotence --type random --seed 42 --output results_order_random.json
 ```
 
-#### **Evaluation on Watermark Overlapping**
+#### **Evaluation on Watermark Overlap**
 
 Running the following command for testing:
 
