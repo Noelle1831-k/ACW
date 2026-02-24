@@ -117,7 +117,7 @@ evaluate_functional_correctness <mbpp_data>.jsonl --problem_file data/mbxp/mbpp_
 evaluate_functional_correctness <humaneval_data>.jsonl --problem_file data/multilingual_humaneval/HumanEval.jsonl
 ```
 
-#### **Evaluation on resilience**
+#### **Evaluation on Resilience**
 
 Running the following command for testing:
 
@@ -127,7 +127,7 @@ python RQ4-get-results.py folder_process --strength= <1 or 2>
 
 Strength 1 and 2 correspond to the Default-level and Maximum-level modifications.
 
-#### **Evaluation on transformation idempotence**
+#### **Evaluation on Transformation Idempotence**
 
 Running the following command for testing:
 
@@ -135,7 +135,7 @@ Running the following command for testing:
 python refactor.py idempotence --type scan --output results_idempotence_scan.json
 ```
 
-#### **Evaluation on transformation order**
+#### **Evaluation on Transformation Order**
 
 Running the following command for testing:
 
@@ -143,7 +143,7 @@ Running the following command for testing:
 python refactor.py idempotence --type random --seed 42 --output results_order_random.json
 ```
 
-#### **Evaluation on watermark overlapping**
+#### **Evaluation on Watermark Overlapping**
 
 Running the following command for testing:
 
