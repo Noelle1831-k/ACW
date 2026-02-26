@@ -155,8 +155,6 @@ We additionally explore the resilience of **ACW** in an extreme setting, where a
 
 <div align="center">
   <img src="assets/supplement.png" width="60%" />
-  <br>
-  <b>Resilience results on rewrite attacks</b>
 </div>
 
 The above figure presents our results. As shown by the red columns in the charts, in terms of the pass rate degradations, the utility of most function-level code has been destroyed by the attack, indicating that excessive modifications result in invalid attacks beyond real-world threat models. This extreme setting serves as an upper-bound analysis, highlighting that watermark disruption attacks should be utility-preserving rather than arbitrarily modifying code at the expense of functionality.
