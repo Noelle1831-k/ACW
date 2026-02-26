@@ -151,7 +151,9 @@ python refactor.py chain --length 3 --seed 42 --output results_overlap.json
 
 ### B.Supplementary Experiments
 
-We additionally explore the resilience of **ACW** in an extreme setting, where an attacker aims to entirely and arbitrarily rewrite the internal logic and control structure of code, using ChatGPT-4 with the prompt: _Rewrite the internal logic of the following Python code completely, including changes to the algorithms, control structures, and variable names. You must strictly preserve the function signature, including the function name, input arguments, and return types, and ensure that the functionality remains exactly the same._
+We additionally explore the resilience of **ACW** in an extreme setting, where an attacker aims to entirely and arbitrarily rewrite the internal logic and control structure of code, using ChatGPT-4 with the prompt:
+
+_Rewrite the internal logic of the following Python code completely, including changes to the algorithms, control structures, and variable names. You must strictly preserve the function signature, including the function name, input arguments, and return types, and ensure that the functionality remains exactly the same._
 
 <div align="center">
   <img src="assets/supplement.png" width="60%" />
