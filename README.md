@@ -153,7 +153,11 @@ python refactor.py chain --length 3 --seed 42 --output results_overlap.json
 
 We additionally explore the resilience of **ACW** in an extreme setting, where an attacker aims to entirely and arbitrarily rewrite the internal logic and control structure of code, using ChatGPT-4 with the prompt: Rewrite the internal logic of the following Python code completely, including changes to the algorithms, control structures, and variable names. You must strictly preserve the function signature, including the function name, input arguments, and return types, and ensure that the functionality remains exactly the same.
 
-<img src="assets/supplement.png">
+<div align="center">
+  <img src="assets/supplement.png" width="60%" />
+  <br>
+  <b>Resilience results on rewrite attacks</b>
+</div>
 
 The above figure presents our results. As shown by the red columns in the charts, in terms of the pass rate degradations, the utility of most function-level code has been destroyed by the attack, indicating that excessive modifications result in invalid attacks beyond real-world threat models. This extreme setting serves as an upper-bound analysis, highlighting that watermark disruption attacks should be utility-preserving rather than arbitrarily modifying code at the expense of functionality.
 
