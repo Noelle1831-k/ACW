@@ -29,7 +29,7 @@
 - [Quick Start](#quick-start)
 - [Appendix](#appendix)
     - [A.Transformation Rules](#atransformation-rules)
-    - [B.Multi-bit Watermarking](#bmulti-bit-watermarking)
+    - [B.Supplementary Experiments](#bsupplementary-experiments)
 - [Contact](#contact)
 
 ## Abstract
@@ -149,47 +149,14 @@ python refactor.py chain --length 3 --seed 42 --output results_overlap.json
 
 <img src="assets/rules.png">
 
-### B.Multi-bit Watermarking
+### B.Supplementary Experiments
 
-We explore the transferability of **ACW** applied for tracing LLMs, beyond our main task of AI-generated code detection.
-By assigning multi-bit watermarks to encode different LLMs (e.g., ChatGPT-4 may be assigned with encoding $1011$), the authorship of a given code can be traced by identifying the extracted bit sequences.
-Preliminary, we encode multi-bit watermarks based on the Bose-Chaudhuri-Hocquenghem (BCH) code, which is a typical error-correction code in digital communication systems.
-Let $\omega$ be a $k$-bit binary sequence, a BCH code over Galois field $GF(q)$ with parameter $(l, k, e)$ denoted as $BCH(l, k, e)\_{q}$, which encodes $\omega$ into an $l$-bit sequence $\omega_{en}$.
-The encoding is governed by a generator polynomial $g(x)$ which is the minimal polynomial over $GF(q)$, ensuring the original message $\omega$ can be recovered by decoding the encoded message $\omega_{en}$ if up to $e$ bits are corrupted.
-For example, $BCH(7, 4, 1)_2$ uses a generator polynomial as $g(x) = x^3 + x + 1$, corresponding to the binary coefficients $1011$.
+We additionally explore the resilience of **ACW** in an extreme setting, where an attacker aims to entirely and arbitrarily rewrite the internal logic and control structure of code, using ChatGPT-4 with the prompt: Rewrite the internal logic of the following Python code completely, including changes to the algorithms, control structures, and variable names. You must strictly preserve the function signature, including the function name, input arguments, and return types, and ensure that the functionality remains exactly the same.
 
-For watermark embedding, given an AI-generated code snippet $\mathcal{C}$ and an applicable transformation set $T$, **ACW** embeds an $l$-bit watermark to $\mathcal{C}$ by selectively applying $l$ applicable transformations from $T$, corresponding to their bit positions in $\omega$ (encoded based on BCH).
-If the bit value in a position is $0$, the corresponding transformation will be applied to the code. If the bit value is $0$, the transformation will be skipped.
+<img src="assets/rules.png">
 
-For watermark extraction, **ACW** checks the application status of $l$ applicable transformations.
-If a certain transformation has been applied, it is determined bit value $1$, otherwise, $0$.
-Finally, a multi-bit watermark $w_{ex}$ can be extracted as a bit sequence.
-Note that BCH allows us to correct possible wrongly-extracted watermark bits, where the error tolerance is determined by the parameter $e$ in BCH.
+The above figure presents our results. As shown by the red columns in the charts, in terms of the pass rate degradations, the utility of most function-level code has been destroyed by the attack, indicating that excessive modifications result in invalid attacks beyond real-world threat models. This extreme setting serves as an upper-bound analysis, highlighting that watermark disruption attacks should be utility-preserving rather than arbitrarily modifying code at the expense of functionality.
 
-We empirically evaluate the correctness of **ACW** in extracting multi-bit watermarks in terms of Bit Accuracy (BitACC).
-Given a set of watermarked codes, BitACC refers to the proportion of the codes whose encoded watermarks are correctly extracted, among the total.
-In particular, we consider the watermark in a certain code snippet to be correctly extracted, only if the extracted watermark matches the original watermark (in bit) exactly.
-
-<div align="center">
-Multi-bit Watermark Extraction Results.
-</div>
-<div align="center">
-<img src="assets/result.png" width="80%">
-</div>
-
-
-The above table presents our results.
-Following our error-correction strategies, 
-in this experiment, we collect the watermarked codes with four applicable transformations in MBPP-GPT-4 and APPS-GPT-4 datasets, 
-i.e., each code snippet is embedded with 4-bit watermarks, 
-where the first two bits are original watermarks and the next two bits are generated based on BCH.
-We present the BitACC results before and after error corrections, 
-where the former uncorrected ones are intermediate results for comparisons.
-As shown by the result, **ACW** achieves promising performance on watermark extraction, 
-and the results are significantly increased based on error correction.
-Especially, as the bold values in the table, all the BitACC results are over 98\% after correction, 
-indicating that **ACW** has the ability to embed and extract multi-bit watermarks, 
-and has the potential to be applied to more tasks beyond AI-generated code detection. 
 
 ## Contact
 We are looking forward to any valuable questions or suggestions, please feel free to contact us at ```noelle@hrbeu.edu.cn```
