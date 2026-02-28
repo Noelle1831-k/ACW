@@ -143,6 +143,41 @@ Running the following command for testing:
 python refactor.py chain --length 3 --seed 42 --output results_overlap.json
 ```
 
+#### **Evaluation on Content-Focused Code Modifications**
+Running the following command for setting environment variables:
+
+```bash
+export OPENAI_API_KEY="sk-..."
+export OPENAI_BASE_URL="https://your-api-endpoint/v1/"
+```
+
+Running the following command for testing:
+```bash
+# Rename variables/function names (Default)
+python openai_ml.py --input dataset.jsonl --start 0 --end 999 --task-type rename
+
+# Rewrite internal logic
+python openai_ml.py --input dataset.jsonl --start 0 --end 999 --task-type rewrite
+```
+
+#### **Evaluation on Adaptive attacks**
+Running the following command for building datasets:
+
+```bash
+python data_build.py \
+  --transformed ./transformed_scripts \
+  --original ./original_scripts
+```
+
+Running the following command for testing:
+```bash
+python train_codet5p_lora.py \
+  --train-data train.jsonl \
+  --output-dir ./my-lora-model \
+  --infer-file test.jsonl
+```
+
+
 ## Appendix
 
 ### A.Transformation Rules
